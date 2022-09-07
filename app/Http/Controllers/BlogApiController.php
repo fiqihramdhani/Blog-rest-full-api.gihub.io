@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 
 
-class PostController extends Controller
+class BlogApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -100,10 +100,10 @@ class PostController extends Controller
     {
         $data = Post::where('id', $id)->get();
         if ($data) {
-            return apiPosts::creatApi(200, 'Create data Success', $data);
+            return apiPosts::creatApi(200, 'Find Post Success', $data);
         } else {
 
-            return apiPosts::creatApi(400, 'Create data failed');
+            return apiPosts::creatApi(400, 'Find Post Failed');
         }
     }
 

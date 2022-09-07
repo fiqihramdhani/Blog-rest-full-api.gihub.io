@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('homes', function (Blueprint $table) {
-            $table->id()->autoIncrement();
+        Schema::create('abouts', function (Blueprint $table) {
+
+            $table->id();
             $table->foreignId('category_id');
             $table->foreignId('user_id');
-            $table->string('T_Home', 255);
-            $table->string('J_Home', 255);
-            $table->string('slug', 255)->unique();
-            $table->text('e_Home', 255);
-            $table->string('img')->nullable();
-            $table->text('B_Home', 1000);
+            $table->String('Title');
+            $table->String('slug')->unique();
+            $table->String('img');
+            $table->text('e_About', 255);
+            $table->String('Deskripsi');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('homes');
+        Schema::dropIfExists('abouts');
     }
 };

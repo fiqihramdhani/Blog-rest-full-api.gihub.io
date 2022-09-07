@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Home;
-use App\Models\Posting;
+
+use App\Models\About;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -11,18 +11,13 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
-class HomePostController extends Controller
+class AboutPostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('Home.Posts.index', [
+        return view('About.Posts.index', [
             "title" => "My Website | Dashboard - Home",
-            "Posts" => Home::where('user_id', auth()->User()->id)->get()
+            "Posts" => About::where('user_id', auth()->User()->id)->get()
         ]);
     }
 
@@ -33,7 +28,7 @@ class HomePostController extends Controller
      */
     public function create()
     {
-        return view('Home.Posts.Create', [
+        return view('About.Posts.Create', [
             "Categories" => Category::all()
         ]);
     }
@@ -47,38 +42,35 @@ class HomePostController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'T_Home' => 'required|max:255',
+            'Title' => 'required|max:255',
             'img' => 'image|file|max:2024',
             'category_id' => 'required',
-            'J_Home' => 'required', 'max:255',
-            'slug' => 'required',
-            'B_Home' => 'required'
+            'Deskripsi' => 'required', 'max:255',
+            'slug' => 'required'
         ]);
 
         if ($request->file('img')) {
             $validateData['img'] = $request->file('img')->store('post-images');
         }
-
+        $validateData['e_Home'] = Str::limit(strip_tags($request->Deskripsi, 250));
         $validateData['user_id'] = auth()->User()->id;
-        $validateData['e_Home'] = Str::limit(strip_tags($request->B_Home, 250));
-        Home::create($validateData);
 
-        return redirect('/Dashboard/Home/Posts')->with('success', 'New Posts has been added!!');
+        return redirect('/Dashboard/About/Posts')->with('success', 'New Posts has been added!!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Home $Post
+     * @param  \App\Models\About $Post
      * @return \Illuminate\Http\Response
      */
-    public function show(Home $Post)
+    public function show(About $Post)
     {
         // if ($Post->User->id !== auth()->User()->id) {
         //     abort(403);
         // }
 
-        return view('Home.Posts.Show', [
+        return view('About.Posts.Show', [
             "Post" => $Post
 
 
@@ -88,15 +80,15 @@ class HomePostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Home $Post
+     * @param  \App\Models\About $Post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Home $Post)
+    public function edit(About $Post)
     {
 
 
 
-        return view('Home.Posts.Edit', [
+        return view('About.Posts.Edit', [
             'Post' => $Post,
             "Categories" => Category::all()
         ]);
@@ -106,17 +98,17 @@ class HomePostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Home $Post
+     * @param  \App\Models\About $Post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Home $Post)
+    public function update(Request $request, About $Post)
     {
         $rules = [
-            'T_Home' => 'required|max:255',
-            'img' => 'required',
+            'Title' => 'required|max:255',
+            'img' => 'image|file|max:2024',
             'category_id' => 'required',
-            'J_Home' => 'required', 'max:255',
-            'B_Home' => 'required'
+            'Deskripsi' => 'required', 'max:255',
+            'slug' => 'required'
         ];
 
         if ($request->slug != $Post->slug) {
@@ -132,34 +124,34 @@ class HomePostController extends Controller
         }
         $validateData['user_id'] = auth()->User()->id;
 
-        $validateData['e_Home'] = Str::limit(strip_tags($request->B_Home, 250));
-        Home::where('id', $Post->id)
+        $validateData['e_About'] = Str::limit(strip_tags($request->Deskripsi, 250));
+        About::where('id', $Post->id)
             ->update($validateData);
 
-        return redirect('/Dashboard/Home/Posts')->with('success', 'Post has been Updated!!');
+        return redirect('/Dashboard/About/Posts')->with('success', 'Post has been Updated!!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Home  $Post
+     * @param  \App\Models\About $Post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Home $Post)
+    public function destroy(About $Post)
     {
-        Home::destroy($Post->id);
+        About::destroy($Post->id);
         if ($Post->img) {
             Storage::delete($Post->img);
         }
 
-        Home::destroy($Post->id);
+        About::destroy($Post->id);
 
-        return redirect('/Dashboard/Home/Posts')->with('success', 'New Posts has been deleted!!');
+        return redirect('/Dashboard/About/Posts')->with('success', 'New Posts has been deleted!!');
     }
 
-    public function homeCheckSlug(Request $request)
+    public function aboutCheckSlug(Request $request)
     {
-        $slug = SlugService::createSlug(Home::class, 'slug', $request->Title);
+        $slug = SlugService::createSlug(About::class, 'slug', $request->Title);
         return response()->json(['slug' => $slug]);
     }
 }

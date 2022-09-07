@@ -32,7 +32,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-center" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Welcome , {{ Auth::user()->name }}<i class="bi bi-emoji-sunglasses-fill px-2"></i>
+                                Welcome , {{ Auth::user()->Nama }}<i class="bi bi-emoji-sunglasses-fill px-2"></i>
                             </a>
 
 
@@ -49,18 +49,18 @@
                                     @endcan
 
 
-                                    <form action="/SignOut" method="POST">
+                                    <form action="/Logout" method="POST">
                                         @csrf
                                         <button class="dropdown-item " type="submit"><i class="bi bi-box-arrow-right"
-                                                style="margin-right: 25px"></i>SignOut</button>
+                                                style="margin-right: 25px"></i>Logout</button>
 
                                     </form>
-                                @else
-                                <li><a class="btn btn-primary " href="/Sign">Sign in</a></li>
 
+
+
+                                </li>
+                            </ul>
                         </li>
-                    </ul>
-                    </li>
                     </ul>
 
                 @endauth

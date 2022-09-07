@@ -76,7 +76,7 @@
                         </div>
 
                         </form>
-                        <p class="d-block text-center mt-3 ">Not Registered? <a href="/Registrasi"
+                        <p class="d-block text-center mt-3 ">Not Registered? <a href="/registrasi"
                                 style="color: rgb(255, 145, 0);">Register Now!</a></p>
 
                     </div>

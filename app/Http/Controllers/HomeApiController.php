@@ -27,29 +27,29 @@ class HomeApiController extends Controller
     {
         try {
             $request->validate([
-                'Title' => 'required',
+                'T_Home' => 'required',
                 'category_id' => 'required',
                 'user_id' => 'required',
                 'img' => 'required',
-                'Judul_Posting' => 'required',
+                'J_Home' => 'required',
                 'slug' => 'required',
-                'exerpt' => 'required',
-                'Body' => 'required'
+                'e_Home' => 'required',
+                'B_Home' => 'required'
             ]);
 
             $Post = Home::create([
-                'Title' => $request->Title,
+                'T_Home' => $request->Title,
                 'category_id' => $request->category_id,
                 'user_id' => $request->user_id,
                 'img' => $request->img,
-                'Judul_Posting' => $request->Judul_Posting,
+                'J_Home' => $request->Judul_Posting,
                 'slug' => $request->Title,
-                'excerpt' => $request->excerpt,
-                'Body' => $request->Body
+                'e_Home' => $request->excerpt,
+                'B_Home' => $request->Body
 
             ]);
 
-            $request['excerpt'] = Str::limit(strip_tags($request->Body, 250));
+            $request['e_Home'] = Str::limit(strip_tags($request->B_Home, 250));
 
             $data = Home::where('id', $Post->id)->get();
             if ($data) {
@@ -67,29 +67,29 @@ class HomeApiController extends Controller
     {
         try {
             $request->validate([
-                'Title' => 'required',
+                'T_Home' => 'required',
                 'category_id' => 'required',
                 'user_id' => 'required',
                 'img' => 'required',
-                'Judul_Posting' => 'required',
+                'J_Home' => 'required',
                 'slug' => 'required',
-                'exerpt' => 'required',
-                'Body' => 'required'
+                'e_Home' => 'required',
+                'B_Home' => 'required'
             ]);
             $Post = Home::find($id);
             $Post->update([
-                'Title' => $request->Title,
+                'T_Home' => $request->Title,
                 'category_id' => $request->category_id,
                 'user_id' => $request->user_id,
                 'img' => $request->img,
-                'Judul_Posting' => $request->Judul_Posting,
+                'J_Home' => $request->Judul_Posting,
                 'slug' => $request->Title,
-                'excerpt' => $request->excerpt,
-                'Body' => $request->Body
+                'e_Home' => $request->excerpt,
+                'B_Home' => $request->Body
 
             ]);
 
-            $request['excerpt'] = Str::limit(strip_tags($request->Body, 250));
+            $request['e_Home'] = Str::limit(strip_tags($request->B_Home, 250));
 
             $data = Home::where('id', $Post->id)->get();
             if ($data) {
@@ -105,8 +105,7 @@ class HomeApiController extends Controller
 
     public function show($id)
     {
-        $Post = Home::find($id);
-        $data = Home::where('id', $Post->id);
+        $data = Home::where('id', $id)->get();
         if ($data) {
             return apiPosts::creatApi(200, 'Create data Success', $data);
         } else {
@@ -115,7 +114,7 @@ class HomeApiController extends Controller
         }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $Post = Home::findOrFail($id);
         $data = $Post->delete();

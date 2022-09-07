@@ -17,7 +17,7 @@ class CategoryApiController extends Controller
      */
     public function index()
     {
-        $data = Category::All()->orderBy('Name', 'asc');
+        $data = Category::All();
 
         if ($data) {
             return apiPosts::creatApi(200, 'Success', $data);

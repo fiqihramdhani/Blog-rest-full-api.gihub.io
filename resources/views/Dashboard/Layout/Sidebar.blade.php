@@ -17,10 +17,10 @@
                  </a>
              </li>
 
-              <li class="nav-item">
+             <li class="nav-item">
                  <a class="nav-link {{ Request::is('Dashboard/Posts') ? 'active' : '' }}" href="/Dashboard/Posts">
                      <span data-feather="file-text"></span>
-                     Data Mahasiswa
+                     Blog Post
                  </a>
              </li>
 
@@ -28,11 +28,19 @@
                  <a class="nav-link {{ Request::is('Dashboard/Home/Posts') ? 'active' : '' }}"
                      href="/Dashboard/Home/Posts">
                      <span data-feather="file-text"></span>
-                     Jurusan 
+                     Home Posts
                  </a>
              </li>
 
-            
+             <li class="nav-item">
+                 <a class="nav-link {{ Request::is('Dashboard/About/Posts') ? 'active' : '' }}"
+                     href="/Dashboard/About/Posts">
+                     <span data-feather="file-text"></span>
+                     About Posts
+                 </a>
+             </li>
+
+
 
 
 

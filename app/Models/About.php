@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Post extends Model
+class About extends Model
 {
     use HasFactory;
     use Sluggable;
 
     protected $guarded = ['id'];
-    protected $with = ['Category'];
+    protected $with = ['Category', 'User'];
 
     public function scopeFilter($query, array $filters)
     {
