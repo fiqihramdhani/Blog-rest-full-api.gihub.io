@@ -14,7 +14,7 @@ class AboutApiController extends Controller
     {
         $data = About::all();
         if ($data) {
-            return apiPosts::creatApi(200, 'Find Post Success');
+            return apiPosts::creatApi(200, 'Find Post Success', $data);
         }
         return apiPosts::creatApi('403', 'Bad Gateway');
     }
@@ -53,11 +53,12 @@ class AboutApiController extends Controller
 
     public function show($id)
     {
-        $about = About::findOrFail($id);
-        $data = $about;
+
+        $data = About::find($id);
+
 
         if ($data) {
-            return apiPosts::creatApi(200, 'Find Data Success');
+            return apiPosts::creatApi(200, 'Find Data Success', $data);
         }
         return apiPosts::creatApi(404, 'Data Not Found');
     }

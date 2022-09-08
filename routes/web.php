@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomePostController;
+use App\Http\Controllers\AboutPostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\DashboardPostController;
@@ -30,6 +31,8 @@ use App\Http\Controllers\DashboardPostController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/Dashboard/Home/Posts/homeCheckSlug', [HomePostController::class, 'homeCheckSlug'])->Middleware('auth');
 Route::resource('/Dashboard/Home/Posts', HomePostController::class)->Middleware('auth');
+Route:
+Route::get('/HomePost/{Post:slug}', [HomeController::class, 'show']);
 
 //ROute Category
 Route::get('/Categories', [CategoryController::class, 'index']);
@@ -59,3 +62,7 @@ Route::get('/Post/{Post:slug}', [BlogController::class, 'show']);
 // Route About
 Route::get('/About', [AboutController::class, 'index']);
 Route::get('/About/{Post:slug}', [AboutController::class, 'show']);
+Route::get('/Dashboard/About/Posts/aboutCheckSlug', [AboutPostController::class, 'aboutCheckSlug'])->Middleware('auth');
+Route::get('/Dashboard/About/Posts', [AboutPostController::class, 'index'])->Middleware('auth');
+Route::get('/Dashboard/About/Posts/create', [AboutPostController::class, 'create'])->Middleware('auth');
+Route::post('/Dashboard/About/Posts', [AboutPostController::class, 'store'])->Middleware('auth');

@@ -17,7 +17,7 @@ class AboutPostController extends Controller
     {
         return view('About.Posts.index', [
             "title" => "My Website | Dashboard - Home",
-            "Posts" => About::where('user_id', auth()->User()->id)->get()
+            "Post" => About::where('user_id', auth()->User()->id)->get()
         ]);
     }
 
@@ -29,7 +29,7 @@ class AboutPostController extends Controller
     public function create()
     {
         return view('About.Posts.Create', [
-            "Categories" => Category::all()
+            "Category" => Category::all()
         ]);
     }
 
@@ -52,8 +52,9 @@ class AboutPostController extends Controller
         if ($request->file('img')) {
             $validateData['img'] = $request->file('img')->store('post-images');
         }
-        $validateData['e_Home'] = Str::limit(strip_tags($request->Deskripsi, 250));
+        $validateData['e_About'] = Str::limit(strip_tags($request->Deskripsi, 250));
         $validateData['user_id'] = auth()->User()->id;
+        About::create($validateData);
 
         return redirect('/Dashboard/About/Posts')->with('success', 'New Posts has been added!!');
     }

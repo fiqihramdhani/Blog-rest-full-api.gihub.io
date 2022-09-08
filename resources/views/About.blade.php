@@ -16,7 +16,8 @@
 
                             <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
                                 width="500" height="500" role="img" aria-label="Placeholder: 500x500"
-                                preserveAspectRatio="xMidYMid slice" focusable="false" src="image/{{ $Posts[0]->Image }}">
+                                preserveAspectRatio="xMidYMid slice" focusable="false"
+                                src="{{ asset('storage/' . $Posts[0]->img) }}">
                         </div>
                     </div>
                 </div>

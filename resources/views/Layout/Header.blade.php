@@ -19,7 +19,7 @@
                     <p>Daftar Terlebih dahulu untuk menikmati fitur lainnya </p>
 
                     @can('admin')
-                        <p><a class="btn btn-lg btn-primary" href="/Registrasi">Sign up today</a></p>
+                        <p><a class="btn btn-lg btn-primary" href="/registrasi">Sign up today</a></p>
                     @endcan
 
                 </div>
