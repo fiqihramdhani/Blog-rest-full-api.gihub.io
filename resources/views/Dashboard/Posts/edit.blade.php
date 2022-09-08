@@ -27,9 +27,9 @@
                     @endif
                     <label for="img" class="form-label">Image</label>
                     <input type="hidden" value="{{ $Post->img }}" name="oldImage">
-                    <input type="file" class="form-control  @error('Img') is-invalid @enderror " id="image"
+                    <input type="file" class="form-control  @error('img') is-invalid @enderror " id="image"
                         name="img" autofocus value="{{ old('img', $Post->img) }}" onchange="previewImage()" required>
-                    @error('Img')
+                    @error('img')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

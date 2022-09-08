@@ -6,7 +6,7 @@
     </div>
     <div class="container">
         <div class="col-lg-6">
-            <form action="/Dashboard/Home/Posts/{{ $Post->slug }}" method="post">
+            <form action="/Dashboard/Home/Posts/{{ $Post->slug }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="mb-3">
@@ -27,9 +27,9 @@
                     @endif
                     <label for="img" class="form-label">Image</label>
                     <input type="hidden" value="{{ $Post->img }}" name="oldImage">
-                    <input type="file" class="form-control  @error('Img') is-invalid @enderror " id="image"
+                    <input type="file" class="form-control  @error('img') is-invalid @enderror " id="image"
                         name="img" autofocus value="{{ old('img', $Post->img) }}" onchange="previewImage()" required>
-                    @error('Img')
+                    @error('img')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -61,9 +61,9 @@
 
                         @foreach ($Categories as $Category)
                             @if (old('category_id', $Post->Category->id) == $Category->id)
-                                <option value="{{ $Category->id }}" selected>{{ $Category->name }}</option>
+                                <option value="{{ $Category->id }}" selected>{{ $Category->Nama }}</option>
                             @else
-                                <option value="{{ $Category->id }}">{{ $Category->name }}</option>
+                                <option value="{{ $Category->id }}">{{ $Category->Nama }}</option>
                             @endif
                         @endforeach
 
@@ -89,5 +89,20 @@
                 .then(data => slug.value = data.slug)
 
         });
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imagePreview = document.querySelector('.img-preview');
+
+            imagePreview.style.display = "block";
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imagePreview.src = oFREvent.target.result;
+            }
+
+        }
     </script>
 @endsection
