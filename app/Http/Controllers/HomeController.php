@@ -18,6 +18,7 @@ class HomeController extends Controller
 
     public function show(Home $Post)
     {
+        Home::find($Post->id)->increment('views');
         return view('Homes.HomePost', [
             "title" => "My Website || Home - Post",
             "active" => "Posts",

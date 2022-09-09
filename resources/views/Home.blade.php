@@ -6,7 +6,7 @@
     <main>
 
         <!-- Marketing messaging and featurettes
-                                          ================================================== -->
+                                                      ================================================== -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
         @if (isset($Posts))
             <div class="container marketing ">
@@ -26,6 +26,10 @@
                                         <a href="/HomePost/{{ $Post->slug }}"
                                             class="btn btn-primary justify-content-center "> Read More</a>
                                     </div>
+                                    <span class="badge bg-info float-end py-2 mt-5">
+                                        <i class="bi bi-eye-fill "></i></span>
+                                    <div class="badge bg-info float-end mb-2 py-2 mt-5" style="margin-right:3px">Views -
+                                        {{ $Post->views }}</div>
                                 </div>
                             </div>
                         </div>

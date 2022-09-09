@@ -3,7 +3,7 @@
 
 @section('content')
     <!-- w3-content defines a container for fixed size centered content,
-    and is wrapped around the whole page content, except for the footer in this example -->
+                    and is wrapped around the whole page content, except for the footer in this example -->
 
     <!-- Header -->
     <header class="w3-container w3-center w3-padding-32 mt-5">
@@ -32,8 +32,8 @@
                     <h3><b>{{ $Posts->Title }}</b></h3>
                     <h5>{{ $Posts->Judul_Posting }} -- <span
                             class="w3-opacity">created_at-{{ $Posts->created_at->diffForHumans() }}</span></h5>
-                    <p><a href="/?Category={{ $Posts->Category->slug }}">{{ $Posts->Category->name }}</a></p>
-                    <p>Posted By {{ $Posts->User->name }} </p>
+                    <p><a href="/?Category={{ $Posts->Category->slug }}">{{ $Posts->Category->Nama }}</a></p>
+                    <p>Posted By {{ $Posts->User->Nama }} </p>
                 </div>
 
                 <div class="w3-container " style="text-align: justify">
@@ -41,7 +41,7 @@
                     <div class="w3-row mt-5">
                         <div class="w3-col m8 s12">
                             <p><a button class="w3-button w3-red  w3-padding-large w3-white w3-border"
-                                    href="/"><b>Back to Home</b></button></a></p>
+                                    href="/Blog"><b>Back to BLOG</b></button></a></p>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
 
 
     <!-- w3-content defines a container for fixed size centered content,
-    and is wrapped around the whole page content, except for the footer in this example -->
+            and is wrapped around the whole page content, except for the footer in this example -->
 
     <!-- Header -->
     <header class="w3-container w3-center w3-padding-32 ">
@@ -40,7 +40,8 @@
                     <div class="w3-card-4 w3-margin w3-white " id="search_list" style="text-align: justify" class="mb-3">
 
                         @if ($Post->img)
-                            <img src="{{ asset('storage/' . $Post->img) }}" alt="Nature" style="width:100%" class="mb-3">
+                            <img src="{{ asset('storage/' . $Post->img) }}" alt="Nature" style="width:100%"
+                                class="mb-3">
                         @else
                             <img src="https://source.unsplash.com/1200x500?{{ $Post->Judul_Posting }}" alt="Nature"
                                 style="width:100%" class="mb-3">
@@ -51,8 +52,8 @@
                             <h5>{{ $Post->Judul_Posting }} -- <span
                                     class="w3-opacity">created_at-{{ $Post->created_at->diffForHumans() }}</span></h5>
                             <p>Posted by <a href="/Blog?User={{ $Post->User->id }}"
-                                    style="text-decoration: none">{{ $Post->User->name }} -- </a><a
-                                    href="/Blog/?Category={{ $Post->Category->slug }}">{{ $Post->Category->name }}</a></p>
+                                    style="text-decoration: none">{{ $Post->User->Nama }} -- </a><a
+                                    href="/Blog/?Category={{ $Post->Category->slug }}">{{ $Post->Category->Nama }}</a></p>
                         </div>
 
                         <div class="w3-container">
@@ -62,6 +63,10 @@
                                     <p><a button class="w3-button w3-red  w3-padding-large w3-white w3-border"
                                             href="/Post/{{ $Post->slug }}"><b>READ MORE »</b></button></a></p>
                                 </div>
+                                <span class="badge bg-info float-end py-2 mt-5">
+                                    <i class="bi bi-eye-fill "></i></span>
+                                <div class="badge bg-info float-end mb-2 py-2 mt-5" style="margin-right:3px">Views -
+                                    {{ $Post->views }}</div>
                             </div>
                         </div>
                     </div>

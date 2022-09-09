@@ -23,6 +23,7 @@ class BlogController extends Controller
 
     public function show(Post $Post)
     {
+        Post::find($Post->id)->increment('views');
         return view('Post', [
             "title" => "My Website - Post",
             "active" => "Posts",
